@@ -47,5 +47,5 @@ jobs:
         cd ios && pod install && cd ..
     - run: brew tap wix/brew
     - run: brew install applesimutils
-    - run: npm detox build e2e --configuration ios.sim.release
-    - run: npm detox test e2e --configuration ios.sim.release --cleanup --debug-synchronization 200
+    - run: npm run build:ios
+    - run: npm run test:ios
