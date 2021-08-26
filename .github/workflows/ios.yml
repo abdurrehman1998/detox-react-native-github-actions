@@ -24,15 +24,15 @@ jobs:
       id: cache
       with:
         path: node_modules
-        key: node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
     - name: Rebuild detox
       if: steps.cache.outputs.cache-hit == 'true'
-      run: yarn detox clean-framework-cache && yarn detox build-framework-cache
+      run: npm detox clean-framework-cache && npm detox build-framework-cache
 
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      run: yarn install
+      run: npm install
 
     - name: Cache Pods
       uses: actions/cache@v1
@@ -47,5 +47,5 @@ jobs:
         cd ios && pod install && cd ..
     - run: brew tap wix/brew
     - run: brew install applesimutils
-    - run: yarn detox build e2e --configuration ios.sim.release
-    - run: yarn detox test e2e --configuration ios.sim.release --cleanup --debug-synchronization 200
+    - run: npm detox build e2e --configuration ios.sim.release
+    - run: npm detox test e2e --configuration ios.sim.release --cleanup --debug-synchronization 200
