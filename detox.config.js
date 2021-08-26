@@ -45,7 +45,7 @@ module.exports = {
     emulator: {
       type: "android.emulator",
       device: {
-        avdName: "Nexus-6-API-30",
+        avdName: "Nexus 5X",
       },
     },
   },
